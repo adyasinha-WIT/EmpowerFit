@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ExFit.DataAcces.Data;
+using ExFit.DataAcces.Repository.IRepository;
+using ExFit.DataAcces.Repository;
 
 
             var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +10,7 @@ using ExFit.DataAcces.Data;
             builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddRazorPages();
-
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 

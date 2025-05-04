@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
+using ExFit.Models;
 
 namespace ExFit.DataAcces.Data
 {
@@ -10,7 +10,12 @@ namespace ExFit.DataAcces.Data
         {
         }
 
+        public DbSet<Workout> Workouts { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
 
+        }
     }
 }
