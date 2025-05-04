@@ -1,15 +1,22 @@
-namespace EmpowerFit
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
+using Microsoft.EntityFrameworkCore;
+using ExFit.DataAcces.Data;
+
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddRazorPages();
 
-            var app = builder.Build();
+
+
+
+
+
+
+
+var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -28,9 +35,6 @@ namespace EmpowerFit
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{area=Basic}/{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
-        }
-    }
-}
