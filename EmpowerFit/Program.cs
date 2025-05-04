@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-
+using ExFit.DataAcces.Data;
 
 
             var builder = WebApplication.CreateBuilder(args);
