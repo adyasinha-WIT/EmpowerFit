@@ -13,12 +13,12 @@ namespace ExFit.DataAcces.Repository
     {
         private ApplicationDbContext _db;
 
-        //public ICategoryRepository Category { get; private set; }
+   
         public IWorkoutRepository Workout { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
-            using var _db = db;
+            _db = db;
           
             Workout = new WorkoutRepository(_db);
         }
