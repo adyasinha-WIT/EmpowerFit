@@ -1,4 +1,6 @@
 ﻿using ExFit.DataAcces.Repository.IRepository;
+using ExFit.Models;
+using ExFit.DataAcces.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -17,7 +19,9 @@ namespace EmpowerFit.Areas.Basic.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            List<Workout> objWorkoutList = _unitOfWork.Workout.GetAll().ToList();
+
+            return View(objWorkoutList);
         }
     }
 }

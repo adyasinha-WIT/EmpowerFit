@@ -1,2 +1,20 @@
 ﻿@using ExFit.Models;
-@
+@model List<Workout>
+
+    <div>
+        <a asp-controller="Workout" aps-action="Upsert" class="">Log New Workout</a>
+    </div>
+<table id="tblData" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Goals</th>
+            <th>Workouts</th>
+            <th>Type</th>
+            <th>Weekly Report</th>
+           
+            <th></th>
+        </tr>
+    </thead>
+
+
+</table>
