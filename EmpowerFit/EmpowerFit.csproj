@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ExFit.DataAcces\ExFit.DataAcces.csproj" />
     <ProjectReference Include="..\ExFit.Models\ExFit.Models.csproj" />
     <ProjectReference Include="..\ExFit.Utilities\ExFit.Utilities.csproj" />
