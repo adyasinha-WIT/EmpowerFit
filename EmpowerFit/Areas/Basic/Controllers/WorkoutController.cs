@@ -20,6 +20,10 @@ namespace EmpowerFit.Areas.Basic.Controllers
         public IActionResult Index()
         {
             List<Workout> objWorkoutList = _unitOfWork.Workout.GetAll().ToList();
+            if (objWorkoutList == null || !objWorkoutList.Any())
+            {
+                TempData["error"] = "No workouts found!";
+            }
 
             return View(objWorkoutList);
         }
@@ -82,6 +86,7 @@ namespace EmpowerFit.Areas.Basic.Controllers
 
 
         [HttpDelete]
+        
         public IActionResult Delete(int? id)
         {
             var workoutToBeDeleted = _unitOfWork.Workout.Get(u => u.Id == id);

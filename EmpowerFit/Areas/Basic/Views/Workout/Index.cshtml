@@ -1,8 +1,8 @@
-﻿@using ExFit.Models;
+﻿@using ExFit.Models
 @model List<Workout>
 
     <div>
-        <a asp-controller="Workout" aps-action="Upsert" class="">Log New Workout</a>
+        <a asp-area="Basic" asp-controller="Workout" asp-action="Upsert" class="btn btn-primary">Log New Workout</a>
     </div>
 <table id="tblData" class="table table-bordered table-striped">
     <thead>

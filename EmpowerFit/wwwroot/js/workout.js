@@ -6,19 +6,19 @@ $(document).ready(function () {
 
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
-        "ajax": { url: '/Basic/Workout/GetAll' },
+        "ajax": { url: '/Basic/Workout/Getall', dataSrc: 'data' },
         "columns": [
             { data: 'goals', "width": "25%" },
-            { data: 'workout', "width": "15%" },
+            { data: 'workouts', "width": "15%" },
             { data: 'type', "width": "10%" },
             { data: 'weeklyReport', "width": "20%" },
-            { data: 'category.name', "width": "15%" },
+           
             {
                 data: 'id',
                 "render": function (data) {
                     return `
-                     <a href="/Basic/Workout/Upsert?id=${data}" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>               
-                     <a onClick=Delete('/Basic/Workout/Delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                     <a href="/basic/workout/upsert?id=${data}" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>               
+                     <a onClick=Delete('/basic/workout/delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
                     </div>`
                 },
                 "width": "25%"

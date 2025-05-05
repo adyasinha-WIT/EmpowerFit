@@ -1,0 +1,74 @@
+﻿@using ExFit.Models
+@model Workout
+
+<div class="card shadow border-0 mt-4">
+    
+            <div class=" col text-center">
+                <h2 class="text-white py-2">@(Model.Id != 0 ? "Update" : "Create") Workout</h2>
+            </div>
+       
+    <div class="card-body p-4">
+
+        <form method="post" class="row" enctype="multipart/form-data">
+            <div asp-validation-summary="All"></div>
+            <input asp-for="Id" hidden />
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+
+                        <div class="mb-3 row p-1">
+                            <label asp-for="Goals" class="ms-2"> </label>
+                            <input asp-for="Goals" class="form-control border-0 shadow" />
+                            <span asp-validation-for="Goals" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="mb-3 row p-1">
+                            <label asp-for="Workouts" class="ms-2"> </label>
+                            <input asp-for="Workouts" class="form-control border-0 shadow"/>
+                            <span asp-validation-for="Workouts" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label asp-for="Type" class="ms-2"> </label>
+                            <input asp-for="Type" class="form-control border-0 shadow" />
+                            <span asp-validation-for="Type" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label asp-for="WeeklyReport" class="ms-2"> </label>
+                            <input asp-for="WeeklyReport" class="form-control border-0 shadow" />
+                            <span asp-validation-for="WeeklyReport" class="text-danger"></span>
+
+                        </div>
+                       
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                }
+
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Workout" asp-action="Index" class="btn btn-secondary border form-control">
+                                    Back to List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
+
