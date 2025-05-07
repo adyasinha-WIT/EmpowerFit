@@ -2,26 +2,69 @@
     ViewBag.Title = "Home";
 }
 
-<h2>Empower Fit</h2>
+<!-- Hero Banner Section -->
+<div class="position-relative">
+    <img src="https://plus.unsplash.com/premium_photo-1664109999741-9c559509df58?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+         alt="EmpowerFit Banner"
+         class="img-fluid w-100"
+         style="height: 350px; object-fit: cover; filter: brightness(0.6);">
+    <div class="position-absolute top-50 start-50 translate-middle text-center text-white" style="width: 90%;">
+        <h1 class="display-4 fw-bold">It’s all coming together</h1>
+        <p class="lead">Empowering women with safety tools and fitness tracking in one place.</p>
+        <a href="/Account/Register" class="btn btn-warning btn-lg me-2">Sign Up Free</a>
+    </div>
+</div>
 
-<div>
-    <a class="" asp-area="Basic" asp-controller="Workout" asp-action="Index">Workouts</a>
- </div>
-<div>
-    <a class="" asp-area="Basic" asp-controller="Profile" asp-action="Index">Profile</a>
+
+<!-- Main container with gradient background -->
+<div class="row w-100">
+    <div class="col-lg-6 mx-auto text-center">
+        <!-- Heading and tagline OUTSIDE the card, on the gradient background -->
+        <h1 class="display-3 fw-bold text-light mb-2 mt-5">Empower Fit</h1>
+        <p class="lead text-light mb-4">Women's Safety & Fitness Tracking App</p>
+
+        <!-- Glassy section box for the menu -->
+        <div class="glass-card shadow-lg p-4 mb-5">
+            <div class="list-group list-group-flush">
+                <a asp-area="Basic" asp-controller="Workout" asp-action="Index" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Workouts</a>
+                <a asp-area="Basic" asp-controller="Profile" asp-action="Index" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Profile</a>
+                <a asp-area="Basic" asp-controller="Tracking" asp-action="Index" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Tracking</a>
+                <a asp-area="Basic" asp-controller="SafetyFeatures" asp-action="Index" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Safety Features</a>
+                <a asp-area="Basic" asp-controller="SafetyTips" asp-action="Index" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Safety Tips</a>
+                <a asp-area="Basic" asp-controller="CommunitySupport" asp-action="Index" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Community Support</a>
+                <a asp-area="Basic" asp-controller="Premium" asp-action="Index" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Premium Features</a>
+            </div>
+        </div>
+
+    </div>
 </div>
-<div>
-    <a class="" asp-area="Premium" asp-controller="Tracking" asp-action="Index">Tracking</a>
-</div>
-<div>
-    <a class="" asp-area="Basic" asp-controller="SafetyFeatures" asp-action="Index">Safety Features</a>
-</div>
-<div>
-    <a class="" asp-area="Basic" asp-controller="SafetyTips" asp-action="Index">Safety Tips</a>
-</div>
-<div>
-    <a class="" asp-area="Premium" asp-controller="CommunitySupport" asp-action="Index">Community Support</a>
-</div>
-<div>
-    <a class="" asp-area="Basic" asp-controller="PremiumFeatures" asp-action="Index">Premium Features</a>
-</div>
+
+<style>
+    /* Glassy card effect for the section box */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    /* Custom dark pink for menu text and hover effects */
+    .menu-link {
+        color: #8c1846 !important; /* Dark pink */
+        background: transparent;
+        border: none;
+        transition: background 0.2s, color 0.2s, transform 0.1s, box-shadow 0.1s;
+        border-radius: 0.5rem;
+        margin-bottom: 0.3rem;
+    }
+
+        .menu-link:hover, .menu-link:focus {
+            color: #fff !important;
+            background: linear-gradient(90deg, #b14fc3 40%, #3a8dde 100%);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 0.5rem 1rem rgba(177, 79, 195, 0.12);
+            text-decoration: none;
+        }
+</style>
