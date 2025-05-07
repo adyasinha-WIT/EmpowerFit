@@ -5,7 +5,7 @@ namespace ExFit.DataAcces.Repository.IRepository
 {
     public interface IWorkoutRepository:IRepository<Workout>
     {
-        void Update(ProductHeaderValue obj);
+        void Update(Workout obj);
         void Save();
     }
 

@@ -20,8 +20,94 @@ namespace EmpowerFit.Areas.Basic.Controllers
         public IActionResult Index()
         {
             List<Workout> objWorkoutList = _unitOfWork.Workout.GetAll().ToList();
+            if (objWorkoutList == null || !objWorkoutList.Any())
+            {
+                TempData["error"] = "No workouts found!";
+            }
 
             return View(objWorkoutList);
         }
+        public IActionResult Upsert(int? id)
+        {
+
+            Workout workout = new Workout();
+
+            if (id == null || id == 0)
+            {
+                //create
+                return View(workout);
+            }
+            else
+            {
+                //update
+                workout = _unitOfWork.Workout.Get(u => u.Id == id);
+                if (workout == null)
+                {
+                    return NotFound();
+                }
+                return View(workout);
+
+
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Upsert( Workout workout)
+        {
+            if (ModelState.IsValid)
+            {
+
+                if (workout.Id == 0)
+                {
+                    _unitOfWork.Workout.Add(workout);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Workout created successfully";
+                }
+                else
+                {
+                    _unitOfWork.Workout.Update(workout);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Workout updated successfully";
+                }
+               
+                return RedirectToAction("Index");
+
+            }
+
+
+            else
+            {
+               
+                return View(workout);
+            }
+        }
+
+
+
+
+        [HttpDelete]
+        
+        public IActionResult Delete(int? id)
+        {
+            var workoutToBeDeleted = _unitOfWork.Workout.Get(u => u.Id == id);
+            if (workoutToBeDeleted == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
+
+            }
+           
+            _unitOfWork.Workout.Remove(workoutToBeDeleted);
+            _unitOfWork.Save();
+            return Json(new { sucess = true, message = "Delete Successful" });
+        }
+        #region API calls
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Workout> objWorkoutList = _unitOfWork.Workout.GetAll().ToList();
+            return Json(new { data = objWorkoutList });
+        }
+        #endregion
     }
 }
+
