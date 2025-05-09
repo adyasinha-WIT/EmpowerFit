@@ -29,6 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <None Include="Areas\Admin\Views\Account\Register.cshtml" />
     <None Include="Areas\Admin\Views\Reports\Index.cshtml" />
     <None Include="Areas\Admin\Views\User Management\Delete.cshtml" />
     <None Include="Areas\Admin\Views\User Management\Edit.cshtml" />

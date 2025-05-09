@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using EmpowerFit.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmpowerFit.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class AccountController : Controller
     {
