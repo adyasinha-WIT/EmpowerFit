@@ -18,19 +18,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Areas\Admin\Controllers\ReportsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Areas\Premium\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\Admin\Views\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Reports\Index.cshtml" />
+    <None Include="Areas\Admin\Views\User Management\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\User Management\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\User Management\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
