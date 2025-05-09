@@ -7,34 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Admin\**" />
     <Compile Remove="wwwroot\images\**" />
-    <Content Remove="Areas\Admin\**" />
     <Content Remove="wwwroot\images\**" />
-    <EmbeddedResource Remove="Areas\Admin\**" />
     <EmbeddedResource Remove="wwwroot\images\**" />
-    <None Remove="Areas\Admin\**" />
     <None Remove="wwwroot\images\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ReportsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Areas\Premium\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Areas\Admin\Views\Account\Login.cshtml" />
-    <None Include="Areas\Admin\Views\Account\Register.cshtml" />
-    <None Include="Areas\Admin\Views\Reports\Index.cshtml" />
-    <None Include="Areas\Admin\Views\User Management\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\User Management\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\User Management\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

@@ -99,6 +99,19 @@ namespace EmpowerFit.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
+        async Task SeedRolesAndAdminAsync(IServiceProvider services)
+        {
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+
+            // Creating roles
+            string[] roleNames = { "Admin", "User" };
+            foreach (var roleName in roleNames)
+            {
+                if (!await roleManager.RoleExistsAsync(roleName))
+                    await roleManager.CreateAsync(new IdentityRole(roleName));
+            }
+        }
 
         public async Task OnGetAsync(string returnUrl = null)
         {

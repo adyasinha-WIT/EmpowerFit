@@ -3,9 +3,10 @@ using ExFit.DataAcces.Data;
 using ExFit.DataAcces.Repository.IRepository;
 using ExFit.DataAcces.Repository;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Builder;
 
 
-            var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -33,12 +34,14 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.MapControllerRoute(
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapRazorPages();
+app.MapControllerRoute(
                 name: "default",
                 pattern: "{area=Basic}/{controller=Home}/{action=Index}/{id?}");
+
+
 
 async Task SeedRolesAndAdminAsync(IServiceProvider services)
 {

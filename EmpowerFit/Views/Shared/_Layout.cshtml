@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,6 +29,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="Basic" asp-controller="Workout" asp-action="Index">Workouts</a>
                         </li>
@@ -43,43 +50,31 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="Basic" asp-controller="Premium" asp-action="Index">Premium Features</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Profile
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end glass-navbar-dropdown" aria-labelledby="profileDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="#">Login</a>
-                                    <ul class="dropdown-menu dropdown-submenu">
-                                        <li>
-                                            <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Login">User Login</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" asp-area="Admin" asp-controller="Account" asp-action="Login">Admin Login</a>
-                                        </li>
-                                    </ul>
+                    <partial name="_LoginPartial"/>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <!-- Show logout and admin dashboard if admin -->
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-warning" asp-area="Basic" asp-controller="Admin" asp-action="Index">Admin Dashboard</a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Register</a>
-                                    <ul class="dropdown-menu dropdown-submenu">
-                                        <li>
-                                            <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Register">User Register</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" asp-area="Admin" asp-controller="Account" asp-action="Register">Admin Register</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="Basic" asp-controller="Profile" asp-action="Index">My Profile</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
+                            }
+                            <li class="nav-item">
+                                <form asp-area="Identity" asp-page="/Account/Logout" method="post" id="logoutForm" class="d-inline">
+                                    <button type="submit" class="nav-link btn btn-link text-white" style="display:inline; cursor:pointer;">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                            </li>
+                        }
                 </div>
             </div>
         </nav>
@@ -95,7 +90,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - EmpowerFit - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - EmpowerFit - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> -- Created by Sarah and Adya --
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
