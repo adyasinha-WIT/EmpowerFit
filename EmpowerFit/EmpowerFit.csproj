@@ -7,17 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\**" />
     <Compile Remove="wwwroot\images\**" />
+    <Content Remove="Areas\Admin\**" />
     <Content Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="Areas\Admin\**" />
     <EmbeddedResource Remove="wwwroot\images\**" />
+    <None Remove="Areas\Admin\**" />
     <None Remove="wwwroot\images\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
+    <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\" />
+    <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Areas\Premium\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
