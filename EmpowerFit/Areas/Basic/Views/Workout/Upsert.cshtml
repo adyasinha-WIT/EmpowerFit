@@ -9,7 +9,7 @@
        
     <div class="card-body p-4">
 
-        <form method="post" class="row" enctype="multipart/form-data">
+        <form asp-action="Upsert" enctype="multipart/form-data">
             <div asp-validation-summary="All"></div>
             <input asp-for="Id" hidden />
             <div class="row">
