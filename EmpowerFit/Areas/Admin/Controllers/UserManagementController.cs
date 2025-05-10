@@ -39,7 +39,6 @@ namespace EmpowerFit.Areas.Admin.Controllers
 
             user.Email = updatedUser.Email;
             user.UserName = updatedUser.UserName;
-            // Add more fields as needed
 
             await _userManager.UpdateAsync(user);
             return RedirectToAction(nameof(Index));
