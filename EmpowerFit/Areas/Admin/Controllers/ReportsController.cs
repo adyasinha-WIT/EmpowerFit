@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace EmpowerFit.Areas.Admin.Controllers
 {
@@ -7,8 +8,20 @@ namespace EmpowerFit.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")] // Restrict access to Admins only
     public class ReportsController : Controller
     {
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public ReportsController(UserManager<IdentityUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
         public IActionResult Index()
         {
+            // Get user count
+            var userCount = _userManager.GetUsersInRoleAsync("Basic").Result.Count
+              + _userManager.GetUsersInRoleAsync("Premium").Result.Count;
+
+            ViewBag.UserCount = userCount;
             return View();
         }
     }

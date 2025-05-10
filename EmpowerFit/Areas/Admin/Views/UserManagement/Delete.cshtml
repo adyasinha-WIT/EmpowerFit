@@ -1,24 +1,22 @@
-﻿@{
-    ViewData["Title"] = "Reports";
+﻿@model Microsoft.AspNetCore.Identity.IdentityUser
+@{
+    ViewData["Title"] = "Delete User";
 }
-
 <div class="container py-4">
-    <div class="row mb-4">
-        <div class="col text-center">
-            <h2 class="fw-bold text-gradient mb-3">Reports Dashboard</h2>
-            <p class="lead text-muted">Analytics, user stats, SOS alerts, and more.</p>
-        </div>
-    </div>
     <div class="row justify-content-center">
-        <div class="col-md-4 mb-4">
-            <div class="card shadow glass-card border-0">
-                <div class="card-header bg-gradient-primary text-white fs-5 fw-semibold">Total Users (excluding admins) </div>
+        <div class="col-md-6">
+            <div class="card glass-card shadow border-0">
                 <div class="card-body text-center">
-                    <h5 class="card-title display-5 fw-bold text-purple">@ViewBag.UserCount</h5>
+                    <h2 class="fw-bold text-gradient mb-4">Delete User</h2>
+                    <p class="mb-4">Are you sure you want to delete <span class="fw-bold">@Model.Email</span>?</p>
+                    <form asp-action="Delete" method="post" class="d-inline">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
                 </div>
             </div>
         </div>
-        <!-- Add more cards for other stats as needed -->
     </div>
 </div>
 
