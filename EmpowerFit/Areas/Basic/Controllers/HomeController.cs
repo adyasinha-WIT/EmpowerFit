@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace EmpowerFit.Areas.Basic.Controllers
 {
     [Area("Basic")]
-    [Authorize(Roles = "Basic,Premium")]
     public class HomeController : Controller
     {
 

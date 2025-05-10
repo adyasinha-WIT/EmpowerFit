@@ -56,3 +56,17 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+.role-select {
+    background-color: #e5d0ff !important; /* Light purple */
+    color: #4a186a !important; /* Dark purple text */
+    border: 1px solid #b39ddb;
+    font-weight: 500;
+}
+
+    .role-select:focus {
+        background-color: #d1c4e9 !important; /* Slightly darker on focus */
+        color: #2a145a !important;
+        border-color: #8e24aa;
+        box-shadow: 0 0 0 0.2rem rgba(177,79,195,.15);
+    }
+

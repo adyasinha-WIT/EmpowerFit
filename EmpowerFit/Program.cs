@@ -49,6 +49,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{area=Basic}/{controller=Home}/{action=Index}/{id?}");
 
+
+
 // --- SEED ROLES AND ADMIN USER ---
 using (var scope = app.Services.CreateScope())
 {

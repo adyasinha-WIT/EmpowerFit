@@ -79,15 +79,31 @@
                             </li>
                         }
                         else
-                        {
-                            <!-- Guest (not logged in) -->
+                            {
+                            <!-- Show Basic user links for guests -->
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Basic" asp-controller="Profile" asp-action="Index">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Basic" asp-controller="Workout" asp-action="Index">Workouts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Basic" asp-controller="SafetyTips" asp-action="Index">Safety Tips</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Basic" asp-controller="SafetyFeatures" asp-action="Index">Safety Features</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Register">Register</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
                             </li>
-                        }
+                            }
+
                     </ul>
                 </div>
             </div>
