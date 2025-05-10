@@ -54,36 +54,66 @@ namespace EmpowerFit.Areas.Basic.Controllers
         }
 
         [HttpPost]
-        public IActionResult Upsert( Workout workout)
+        public IActionResult Upsert(Workout workout, IFormFile? mediaFile)
         {
             if (ModelState.IsValid)
             {
+                // Handle file upload
+                if (mediaFile != null && mediaFile.Length > 0)
+                {
+                    // Validate file type and size (e.g., max 5MB)
+                    var allowedTypes = new[] { ".jpg", ".jpeg", ".png", ".gif", ".mp4", ".webm" };
+                    var ext = Path.GetExtension(mediaFile.FileName).ToLowerInvariant();
+                    if (!allowedTypes.Contains(ext))
+                    {
+                        ModelState.AddModelError("", "Only image and video files are allowed.");
+                        return View(workout);
+                    }
+                    if (mediaFile.Length > 5 * 1024 * 1024)
+                    {
+                        ModelState.AddModelError("", "File size must be under 5MB.");
+                        return View(workout);
+                    }
+
+                    // Save file to wwwroot/uploads
+                    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
+                    if (!Directory.Exists(uploadsFolder))
+                        Directory.CreateDirectory(uploadsFolder);
+
+                    string uniqueFileName = Guid.NewGuid().ToString() + ext;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        mediaFile.CopyTo(fileStream);
+                    }
+
+                    // Save relative path for web access
+                    workout.MediaUrl = "/uploads/" + uniqueFileName;
+                }
+                else if (workout.Id != 0)
+                {
+                    // For update, preserve existing MediaUrl if no new file
+                    var existing = _unitOfWork.Workout.Get(u => u.Id == workout.Id);
+                    if (existing != null)
+                        workout.MediaUrl = existing.MediaUrl;
+                }
 
                 if (workout.Id == 0)
                 {
                     _unitOfWork.Workout.Add(workout);
-                    _unitOfWork.Save();
                     TempData["success"] = "Workout created successfully";
                 }
                 else
                 {
                     _unitOfWork.Workout.Update(workout);
-                    _unitOfWork.Save();
                     TempData["success"] = "Workout updated successfully";
                 }
-               
+                _unitOfWork.Save();
                 return RedirectToAction("Index");
-
             }
-
-
-            else
-            {
-               
-                return View(workout);
-            }
+            return View(workout);
         }
-
 
 
 

@@ -16,5 +16,7 @@ namespace ExFit.Models
         public string Type { get; set; }
 
         public string WeeklyReport { get; set; }
+
+        public string? MediaUrl { get; set; } // For image/video path
     }
 }

@@ -39,9 +39,33 @@
                             <label asp-for="WeeklyReport" class="ms-2"> </label>
                             <input asp-for="WeeklyReport" class="form-control border-0 shadow" />
                             <span asp-validation-for="WeeklyReport" class="text-danger"></span>
-
                         </div>
-                       
+
+@*                         adding media stuff
+ *@
+                        <div class="mb-3 row p-1">
+                            <label class="ms-2">Upload Progress Photo/Video</label>
+                            <input type="file" name="mediaFile" class="form-control border-0 shadow" accept="image/*,video/*" />
+                            <span class="text-muted small">Accepted: images or short videos</span>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.MediaUrl))
+                        {
+                            <div class="mb-3">
+                                @if (Model.MediaUrl.EndsWith(".mp4") || Model.MediaUrl.EndsWith(".webm"))
+                                {
+                                    <video width="200" controls>
+                                        <source src="@Model.MediaUrl" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                }
+                                else
+                                {
+                                    <img src="@Model.MediaUrl" alt="Workout Media" width="200" class="rounded shadow" />
+                                }
+                            </div>
+                        }
+
                         <div class="row pt-2">
                             <div class="col-6 col-md-3">
                                 @if (Model.Id != 0)
@@ -52,15 +76,14 @@
                                 {
                                     <button type="submit" class="btn btn-primary form-control">Create</button>
                                 }
-
                             </div>
-
                             <div class="col-6 col-md-3">
                                 <a asp-controller="Workout" asp-action="Index" class="btn btn-secondary border form-control">
                                     Back to List
                                 </a>
                             </div>
                         </div>
+
                     </div>
                 </div>
              
