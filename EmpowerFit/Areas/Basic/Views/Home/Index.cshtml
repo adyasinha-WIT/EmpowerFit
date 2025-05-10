@@ -1,5 +1,19 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewBag.Title = "Home";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h2 class="text-center mt-4 mb-3 text-success">Welcome, @UserManager.GetUserName(User)!</h2>
+}
+else
+{
+    <h2 class="text-center mt-4 mb-3 text-info">Welcome to EmpowerFit!</h2>
+    <p class="lead text-center mb-4">Sign up or log in to unlock all features.</p>
 }
 
 <!-- Hero Banner Section -->
@@ -14,6 +28,7 @@
         <a href="/Account/Register" class="btn btn-warning btn-lg me-2">Sign Up Free</a>
     </div>
 </div>
+
 
 <!-- Main container with gradient background -->
 <div class="row w-100">

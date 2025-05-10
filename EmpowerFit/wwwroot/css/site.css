@@ -22,13 +22,15 @@ body {
 }
 
 .glass-navbar {
-    background: rgba(120, 80, 220, 0.3); /* Light purple-blue with transparency */
+    background: rgba(147, 112, 219, 0.3) !important; /* Light purple */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-radius: 18px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    margin: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
 
 .navbar .nav-link {
     font-weight: 500;
@@ -44,3 +46,27 @@ body {
     letter-spacing: 1px;
     font-size: 1.4rem;
 }
+
+.glass-navbar-dropdown {
+    background: rgba(120, 80, 220, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.role-select {
+    background-color: #e5d0ff !important; /* Light purple */
+    color: #4a186a !important; /* Dark purple text */
+    border: 1px solid #b39ddb;
+    font-weight: 500;
+}
+
+    .role-select:focus {
+        background-color: #d1c4e9 !important; /* Slightly darker on focus */
+        color: #2a145a !important;
+        border-color: #8e24aa;
+        box-shadow: 0 0 0 0.2rem rgba(177,79,195,.15);
+    }
+
