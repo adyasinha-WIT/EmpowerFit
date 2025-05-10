@@ -30,8 +30,12 @@ function loadDataTable() {
                 "data": "id",
                 "render": function (data) {
                     return `
-                <a href="/Basic/Workout/Upsert/${data}" class="btn btn-success btn-sm mx-1">Edit</a>
-                <a onclick=Delete('/Basic/Workout/Delete/${data}') class="btn btn-danger btn-sm mx-1">Delete</a>
+        <a href="/Basic/Workout/Upsert/${data}" class="btn btn-outline-primary btn-sm mx-1">
+            <i class="bi bi-pencil-square"></i> Edit
+        </a>
+        <a onclick="Delete('/Basic/Workout/Delete/${data}')" class="btn btn-outline-danger btn-sm mx-1">
+            <i class="bi bi-trash"></i> Delete
+        </a>
             `;
                 },
                 "orderable": false,
