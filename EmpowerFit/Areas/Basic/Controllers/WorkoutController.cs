@@ -136,9 +136,19 @@ namespace EmpowerFit.Areas.Basic.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            List<Workout> objWorkoutList = _unitOfWork.Workout.GetAll().ToList();
-            return Json(new { data = objWorkoutList });
+            var workouts = _unitOfWork.Workout.GetAll();
+            var data = workouts.Select(w => new {
+                goals = w.Goals,
+                workouts = w.Workouts,
+                type = w.Type,
+                weeklyReport = w.WeeklyReport,
+                mediaUrl = w.MediaUrl, // <-- Ensure this property exists and is set!
+                id = w.Id
+            }).ToList();
+
+            return Json(new { data });
         }
+
         #endregion
     }
 }
