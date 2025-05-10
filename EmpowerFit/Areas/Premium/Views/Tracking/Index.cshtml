@@ -1,12 +1,15 @@
 ﻿@{
-    ViewBag.Title = "Tracking Maps";
+    ViewBag.Title = "Tracking";
 }
 
-<h2>Tracking Maps</h2>
+<h2>Tracking</h2>
 
-<p>Here you can view your location history on a map.</p>
+<h3>Current Location</h3>
 
-<div id="map" style=""></div>
+<div>
+    <p>Latitude: <span id="latitude"></span></p>
+    <p>Longitude: <span id="longitude"></span></p>
+</div>
 
 @section Scripts {
     <script src="~/js/tracking.js"></script>
