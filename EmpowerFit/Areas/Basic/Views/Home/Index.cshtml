@@ -25,33 +25,11 @@ else
     <div class="position-absolute top-50 start-50 translate-middle text-center text-white" style="width: 90%;">
         <h1 class="display-4 fw-bold">It’s all coming together</h1>
         <p class="lead">Empowering women with safety tools and fitness tracking in one place.</p>
-        <a href="/Account/Register" class="btn btn-warning btn-lg me-2">Sign Up Free</a>
+        <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-warning btn-lg me-2">Sign Up Free</a>
     </div>
 </div>
 
 
-<!-- Main container with gradient background -->
-<div class="row w-100">
-    <div class="col-lg-6 mx-auto text-center">
-        <!-- Heading and tagline OUTSIDE the card, on the gradient background -->
-        <h1 class="display-3 fw-bold text-light mb-2 mt-5">Empower Fit</h1>
-        <p class="lead text-light mb-4">Women's Safety & Fitness Tracking App</p>
-
-        <!-- Glassy section box for the menu -->
-        <div class="glass-card shadow-lg p-4 mb-5">
-            <div class="list-group list-group-flush">
-                <a asp-area="Basic" asp-controller="Workout" asp-action="Index" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Workouts</a>
-                <a asp-area="Basic" asp-controller="Profile" asp-action="Index" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Profile</a>
-                <a asp-area="Premium" asp-controller="Tracking" asp-action="Index" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Tracking</a>
-                <a asp-area="Basic" asp-controller="Home" asp-action="ComingSoon" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Safety Features</a>
-                <a asp-area="Basic" asp-controller="Home" asp-action="ComingSoon" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Safety Tips</a>
-                <a asp-area="Basic" asp-controller="Home" asp-action="ComingSoon" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Community Support</a>
-                <a asp-area="Basic" asp-controller="Home" asp-action="ComingSoon" class="list-group-item list-group-item-action fs-5 fw-semibold menu-link">Premium Features</a>
-            </div>
-        </div>
-
-    </div>
-</div>
 
 <style>
     /* Glassy card effect for the section box */
