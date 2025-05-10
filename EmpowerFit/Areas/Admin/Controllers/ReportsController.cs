@@ -18,8 +18,8 @@ namespace EmpowerFit.Areas.Admin.Controllers
         public IActionResult Index()
         {
             // Get user count
-            var userCount = _userManager.GetUsersInRoleAsync("Basic").Result.Count
-              + _userManager.GetUsersInRoleAsync("Premium").Result.Count;
+            var userCount = _userManager.Users.Count();
+
 
             ViewBag.UserCount = userCount;
             return View();
