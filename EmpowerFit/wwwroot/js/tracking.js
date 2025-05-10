@@ -1,9 +1,19 @@
-﻿var map = L.map('map').setView([51.505, -0.09], 13));
+﻿$(document).ready(function () {
+    console.log("Tracking.js loaded");
+    loadLocation();
+});
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-L.marker([51.5, -0.09]).addTo(map)
-    .bindPopup('A pretty CSS popup.<br> Easily customizable.')
-    .openPopup();
+function loadLocation() {
+    console.log("Getting location...");
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            console.log("Location retrieved:", position.coords.latitude, position.coords.longitude);
+            document.getElementById('latitude').innerText = position.coords.latitude;
+            document.getElementById('longitude').innerText = position.coords.longitude;
+        },
+        function (error) {
+            console.error("Location information is unavailable", error);
+            alert("Unable to retrieve location data");
+        }
+    );
+}

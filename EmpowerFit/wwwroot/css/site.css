@@ -20,3 +20,27 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.glass-navbar {
+    background: rgba(120, 80, 220, 0.3); /* Light purple-blue with transparency */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.navbar .nav-link {
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+    .navbar .nav-link:hover, .navbar .nav-link.active {
+        color: #ffe6fa !important; /* Soft pinkish highlight on hover */
+        text-shadow: 0 1px 8px #b39ddb;
+    }
+
+.navbar-brand {
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+}
