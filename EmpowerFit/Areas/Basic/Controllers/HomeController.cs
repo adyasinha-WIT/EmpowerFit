@@ -2,10 +2,12 @@
 using System.Diagnostics;
 using ExFit.Models;
 using ExFit.DataAcces.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmpowerFit.Areas.Basic.Controllers
 {
     [Area("Basic")]
+    [Authorize(Roles = "Basic,Premium")]
     public class HomeController : Controller
     {
 

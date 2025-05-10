@@ -97,6 +97,10 @@ namespace EmpowerFit.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required(ErrorMessage = "Please select a role")]
+            [Display(Name = "Role")]
+            public string Role { get; set; }
         }
 
         async Task SeedRolesAndAdminAsync(IServiceProvider services)
@@ -133,6 +137,8 @@ namespace EmpowerFit.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, Input.Role);
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

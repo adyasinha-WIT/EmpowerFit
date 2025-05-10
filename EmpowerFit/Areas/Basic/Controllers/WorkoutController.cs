@@ -3,11 +3,13 @@ using ExFit.Models;
 using ExFit.DataAcces.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace EmpowerFit.Areas.Basic.Controllers
 {
     [Area("Basic")]
+    [Authorize(Roles = "Basic,Premium")]
     public class WorkoutController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

@@ -13,11 +13,9 @@
     <link rel="stylesheet" href="~/EmpowerFit.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
-   
 </head>
 <body>
     <header>
-
         <nav class="navbar navbar-expand-lg glass-navbar mb-4">
             <div class="container-fluid">
                 <a class="navbar-brand fw-bold text-white" asp-area="" asp-controller="Home" asp-action="Index">
@@ -29,36 +27,51 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Basic" asp-controller="Workout" asp-action="Index">Workouts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Basic" asp-controller="Tracking" asp-action="Index">Tracking</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Basic" asp-controller="SafetyTips" asp-action="Index">Safety Tips</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Basic" asp-controller="CommunitySupport" asp-action="Index">Community Support</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Basic" asp-controller="SafetyFeatures" asp-action="Index">Safety Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Basic" asp-controller="Premium" asp-action="Index">Premium Features</a>
-                        </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            <!-- Show logout and admin dashboard if admin -->
-                            @if (User.IsInRole("Admin"))
+                            if (User.IsInRole("Admin"))
                             {
+                                <!-- Admin-only links -->
                                 <li class="nav-item">
-                                    <a class="nav-link text-warning" asp-area="Basic" asp-controller="Admin" asp-action="Index">Admin Dashboard</a>
+                                    <a class="nav-link text-warning" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Admin Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-warning" asp-area="Admin" asp-controller="UserManagement" asp-action="Index">User Management</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-warning" asp-area="Admin" asp-controller="Reports" asp-action="Index">Reports</a>
                                 </li>
                             }
+                            else
+                            {
+                                <!-- Basic & Premium links -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="Basic" asp-controller="Profile" asp-action="Index">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="Basic" asp-controller="Workout" asp-action="Index">Workouts</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="Basic" asp-controller="SafetyTips" asp-action="Index">Safety Tips</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="Basic" asp-controller="SafetyFeatures" asp-action="Index">Safety Features</a>
+                                </li>
+                                @* Premium-only links *@
+                                @if (User.IsInRole("Premium"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="Basic" asp-controller="CommunitySupport" asp-action="Index">Community Support</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="Basic" asp-controller="Tracking" asp-action="Index">Tracking</a>
+                                    </li>
+                                }
+                            }
+                            <!-- Logout button for all logged-in users -->
                             <li class="nav-item">
                                 <form asp-area="Identity" asp-page="/Account/Logout" method="post" id="logoutForm" class="d-inline">
                                     <button type="submit" class="nav-link btn btn-link text-white" style="display:inline; cursor:pointer;">Logout</button>
@@ -67,21 +80,18 @@
                         }
                         else
                         {
-                            <partial name="_LoginPartial" />
-
-@*                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                            </li>
+                            <!-- Guest (not logged in) -->
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                            </li> *@
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                            </li>
                         }
+                    </ul>
                 </div>
             </div>
         </nav>
-
-
-
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -100,7 +110,6 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
