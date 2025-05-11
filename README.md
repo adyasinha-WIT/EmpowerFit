@@ -28,7 +28,7 @@ The repository is organized into the following main folders:
 
     EmpowerFit.Utilities: Utility classes and helper functions.
 
-    ExFit.DataAcces, ExFit.Models, ExFit.Utilities: Additional modules or experimental features (may be under development).
+    ExFit.DataAcces, ExFit.Models, ExFit.Utilities: Additional modules or experimental features.
 
 Other files:
 
