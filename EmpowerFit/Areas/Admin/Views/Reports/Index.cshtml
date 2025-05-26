@@ -1,16 +1,119 @@
 ﻿@{
     ViewData["Title"] = "Reports";
 }
-<h2>Reports Dashboard</h2>
-<p>Show analytics, user stats, SOS alerts, etc. here.</p>
-<div class="row">
-    <div class="col-md-4">
-        <div class="card bg-light mb-3">
-            <div class="card-header">Total Users</div>
-            <div class="card-body">
-                <h5 class="card-title">[User Count]</h5>
-            </div>
+
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h2 class="fw-bold text-gradient mb-3">Reports Dashboard</h2>
+            <p class="lead text-muted">Analytics, user stats, SOS alerts, and more.</p>
         </div>
     </div>
-    <!-- Will add more cards for other stats -->
+    <div class="row justify-content-center">
+
+        <h2 class="mb-4">User Analytics</h2>
+        <p><strong>Total Users:</strong> @ViewBag.TotalCount</p>
+        <div class="mb-5">
+            <canvas id="userRoleChart" width="400" height="200"></canvas>
+        </div>
+        @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                var ctx = document.getElementById('userRoleChart').getContext('2d');
+                var userRoleChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Basic', 'Premium', 'Admin'],
+                        datasets: [{
+                            label: 'User Count',
+                            data: [
+                @ViewBag.BasicCount,
+                @ViewBag.PremiumCount,
+                @ViewBag.AdminCount
+                            ],
+                            backgroundColor: [
+                                'rgba(179, 79, 195, 0.7)',   // purple for Basic
+                                'rgba(58, 141, 222, 0.7)',   // blue for Premium
+                                'rgba(255, 193, 7, 0.7)'     // yellow for Admin
+                            ],
+                            borderColor: [
+                                'rgba(179, 79, 195, 1)',
+                                'rgba(58, 141, 222, 1)',
+                                'rgba(255, 193, 7, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'bold'
+                                    }
+                                }
+                            },
+                            title: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'bold'
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(255,255,255,0.15)'
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    color: '#fff',
+                                    font: {
+                                        size: 16,
+                                        weight: 'bold'
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(255,255,255,0.15)'
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+
+    }
+
+    </div>
 </div>
+
+<style>
+    .glass-card {
+        background: rgba(245, 239, 255, 0.7);
+        border-radius: 1.25rem;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+    }
+
+    .text-gradient {
+        background: linear-gradient(90deg, #b14fc3 40%, #3a8dde 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+    }
+
+    .text-purple {
+        color: #8c1846;
+    }
+</style>

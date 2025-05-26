@@ -8,22 +8,41 @@ function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": { url: '/Basic/Workout/Getall', dataSrc: 'data' },
         "columns": [
-            { data: 'goals', "width": "25%" },
-            { data: 'workouts', "width": "15%" },
-            { data: 'type', "width": "10%" },
-            { data: 'weeklyReport', "width": "20%" },
-           
+            { "data": "goals" },
+            { "data": "workouts" },
+            { "data": "type" },
+            { "data": "weeklyReport" },
             {
-                data: 'id',
+                "data": "mediaUrl",
+                "render": function (data, type, row) {
+                    if (!data) return '';
+                    var ext = data.split('.').pop().toLowerCase();
+                    if (["mp4", "webm"].includes(ext)) {
+                        return `<video width="80" controls><source src="${data}" type="video/${ext}"></video>`;
+                    } else {
+                        return `<img src="${data}" width="80" class="rounded shadow" />`;
+                    }
+                },
+                "orderable": false,
+                "searchable": false
+            },
+            {
+                "data": "id",
                 "render": function (data) {
                     return `
-                     <a href="/basic/workout/upsert?id=${data}" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>               
-                     <a onClick=Delete('/basic/workout/delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
-                    </div>`
+        <a href="/Basic/Workout/Upsert/${data}" class="btn btn-outline-primary btn-sm mx-1">
+            <i class="bi bi-pencil-square"></i> Edit
+        </a>
+        <a onclick="Delete('/Basic/Workout/Delete/${data}')" class="btn btn-outline-danger btn-sm mx-1">
+            <i class="bi bi-trash"></i> Delete
+        </a>
+            `;
                 },
-                "width": "25%"
+                "orderable": false,
+                "searchable": false
             }
         ]
+
     });
 }
 function Delete(url) {

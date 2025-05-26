@@ -70,3 +70,33 @@ body {
         box-shadow: 0 0 0 0.2rem rgba(177,79,195,.15);
     }
 
+.empowerfit-welcome {
+    color: #1a1061; /* EmpowerFit dark pink/purple */
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px #f4e1f5;
+}
+
+.btn-outline-custom-purple {
+    color: #6f42c1;
+    border-color: #6f42c1;
+    background-color: transparent;
+}
+
+    .btn-outline-custom-purple:hover, .btn-outline-custom-purple:focus {
+        color: #fff;
+        background-color: #6f42c1;
+        border-color: #6f42c1;
+    }
+
+.btn-outline-custom-pink {
+    color: #d63384;
+    border-color: #d63384;
+    background-color: transparent;
+}
+
+    .btn-outline-custom-pink:hover, .btn-outline-custom-pink:focus {
+        color: #fff;
+        background-color: #d63384;
+        border-color: #d63384;
+    }

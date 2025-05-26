@@ -3,7 +3,6 @@ using ExFit.DataAcces.Data;
 using ExFit.DataAcces.Repository.IRepository;
 using ExFit.DataAcces.Repository;
 
-=======
 using EmpowerFit.Areas.Identity;
 
 using Microsoft.AspNetCore.Identity;
@@ -30,8 +29,6 @@ builder.Services.ConfigureApplicationCookie(options =>
     // Default Identity path
 });
 
-=======
-var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -109,7 +106,7 @@ async Task SeedRolesAndAdminAsync(IServiceProvider services)
 }
 
 app.Run();
-=======
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

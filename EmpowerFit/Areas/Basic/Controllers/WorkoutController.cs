@@ -54,34 +54,79 @@ namespace EmpowerFit.Areas.Basic.Controllers
         }
 
         [HttpPost]
-        public IActionResult Upsert( Workout workout)
+        public IActionResult Upsert(Workout workout, IFormFile? mediaFile)
         {
             if (ModelState.IsValid)
             {
+                string? mediaPath = null;
+
+                // Handle file upload
+                if (mediaFile != null && mediaFile.Length > 0)
+                {
+                    var allowedTypes = new[] { ".jpg", ".jpeg", ".png", ".gif", ".mp4", ".webm" };
+                    var ext = Path.GetExtension(mediaFile.FileName).ToLowerInvariant();
+
+                    if (!allowedTypes.Contains(ext))
+                    {
+                        ModelState.AddModelError("", "Only image and video files are allowed.");
+                        return View(workout);
+                    }
+
+                    if (mediaFile.Length > 5 * 1024 * 1024)
+                    {
+                        ModelState.AddModelError("", "File size must be under 5MB.");
+                        return View(workout);
+                    }
+
+                    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
+                    if (!Directory.Exists(uploadsFolder))
+                        Directory.CreateDirectory(uploadsFolder);
+
+                    string uniqueFileName = Guid.NewGuid().ToString() + ext;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        mediaFile.CopyTo(fileStream);
+                    }
+
+                    mediaPath = "/uploads/" + uniqueFileName;
+                }
 
                 if (workout.Id == 0)
                 {
+                    // New workout
+                    if (mediaPath != null)
+                        workout.MediaUrl = mediaPath;
+
                     _unitOfWork.Workout.Add(workout);
-                    _unitOfWork.Save();
                     TempData["success"] = "Workout created successfully";
                 }
                 else
                 {
-                    _unitOfWork.Workout.Update(workout);
-                    _unitOfWork.Save();
+                    // Existing workout – fetch and update explicitly
+                    var existingWorkout = _unitOfWork.Workout.Get(u => u.Id == workout.Id);
+
+                    if (existingWorkout == null)
+                        return NotFound();
+
+                    existingWorkout.Goals = workout.Goals;
+                    existingWorkout.Workouts = workout.Workouts;
+                    existingWorkout.Type = workout.Type;
+                    existingWorkout.WeeklyReport = workout.WeeklyReport;
+
+                    if (mediaPath != null)
+                        existingWorkout.MediaUrl = mediaPath;
+
+                    _unitOfWork.Workout.Update(existingWorkout);
                     TempData["success"] = "Workout updated successfully";
                 }
-               
+
+                _unitOfWork.Save();
                 return RedirectToAction("Index");
-
             }
 
-
-            else
-            {
-               
-                return View(workout);
-            }
+            return View(workout);
         }
 
 
@@ -106,9 +151,19 @@ namespace EmpowerFit.Areas.Basic.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            List<Workout> objWorkoutList = _unitOfWork.Workout.GetAll().ToList();
-            return Json(new { data = objWorkoutList });
+            var workouts = _unitOfWork.Workout.GetAll();
+            var data = workouts.Select(w => new {
+                goals = w.Goals,
+                workouts = w.Workouts,
+                type = w.Type,
+                weeklyReport = w.WeeklyReport,
+                mediaUrl = w.MediaUrl, // <-- Ensure this property exists and is set!
+                id = w.Id
+            }).ToList();
+
+            return Json(new { data });
         }
+
         #endregion
     }
 }
