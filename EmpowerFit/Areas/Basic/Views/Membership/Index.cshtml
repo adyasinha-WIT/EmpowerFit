@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ExFit.Models.MembershipPlan>
+@{
+    ViewBag.Title = "Choose Your Premium Plan";
+}
+
+<h2 class="mb-4">Upgrade to Premium</h2>
+<div class="row">
+    @foreach (var plan in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card p-3 shadow-sm h-100">
+                <h5>@plan.Name</h5>
+                <p><strong>Price:</strong> $@plan.Price</p>
+                <p><strong>Duration:</strong> @plan.DurationInDays days</p>
+                <form asp-action="AddToCart" method="post">
+                    <input type="hidden" name="planId" value="@plan.Id" />
+                    <button type="submit" class="btn btn-outline-primary">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    }
+</div>

@@ -4,6 +4,7 @@ using ExFit.DataAcces.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExFit.DataAcces.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250528072350_AddMembershipAndCartEntities")]
+    partial class AddMembershipAndCartEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,36 +88,6 @@ namespace ExFit.DataAcces.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MembershipPlans");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DurationInDays = 30,
-                            Name = "1 Month",
-                            Price = 9.99m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DurationInDays = 90,
-                            Name = "3 Months",
-                            Price = 24.99m
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DurationInDays = 180,
-                            Name = "6 Months",
-                            Price = 44.99m
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DurationInDays = 365,
-                            Name = "1 Year",
-                            Price = 79.99m
-                        });
                 });
 
             modelBuilder.Entity("ExFit.Models.Workout", b =>
