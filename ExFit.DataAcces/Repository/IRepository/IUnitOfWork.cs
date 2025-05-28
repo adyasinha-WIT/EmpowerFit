@@ -11,5 +11,15 @@ namespace ExFit.DataAcces.Repository.IRepository
         //ICategoryRepository Category { get; }
         IWorkoutRepository Workout { get; }
         void Save();
+
+        public interface IUnitOfWork
+        {
+            IWorkoutRepository Workout { get; }
+            IMembershipPlanRepository MembershipPlan { get; }
+            ICartRepository Cart { get; }
+            ICartItemRepository CartItem { get; }
+            void Save();
+        }
+
     }
 }
