@@ -13,7 +13,9 @@ namespace ExFit.DataAcces.Repository
     {
         private ApplicationDbContext _db;
 
-   
+        public IMembershipPlanRepository MembershipPlan { get; private set; }
+        public ICartRepository Cart { get; private set; }
+        public ICartItemRepository CartItem { get; private set; }
         public IWorkoutRepository Workout { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
@@ -21,8 +23,10 @@ namespace ExFit.DataAcces.Repository
             _db = db;
           
             Workout = new WorkoutRepository(_db);
+            MembershipPlan = new MembershipPlanRepository(_db);
+            Cart = new CartRepository(_db);
+            CartItem = new CartItemRepository(_db);
         }
-
 
 
         public void Save()

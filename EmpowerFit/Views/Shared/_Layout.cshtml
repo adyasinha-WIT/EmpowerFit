@@ -56,6 +56,12 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-white" asp-area="Basic" asp-controller="Home" asp-action="ComingSoon" >Safety Features</a>
                                 </li>
+                                @if (!User.IsInRole("Premium"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-warning" asp-area="Basic" asp-controller="Membership" asp-action="Index">Upgrade to Premium</a>
+                                    </li>
+                                }
                                 @* Premium-only links *@
                                 @if (User.IsInRole("Premium"))
                                 {
@@ -65,6 +71,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link text-white" asp-area="Premium" asp-controller="Tracking" asp-action="Index">Tracking</a>
                                     </li>
+
                                 }
                             }
                             <!-- Logout button for all logged-in users -->

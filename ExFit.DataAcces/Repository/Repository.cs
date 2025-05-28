@@ -44,6 +44,24 @@ namespace ExFit.DataAcces.Repository
             return query.FirstOrDefault();
         }
 
+        T IRepository<T>.GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties)
+        {
+            IQueryable<T> query = dbSet;
+            query = query.Where(filter);
+
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProperty in includeProperties
+                             .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+
+            return query.FirstOrDefault();
+        }
+
+
         IEnumerable<T> IRepository<T>.GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;

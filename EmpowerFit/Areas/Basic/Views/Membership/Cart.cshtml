@@ -1,0 +1,37 @@
+﻿@model ExFit.Models.Cart
+@{
+    ViewBag.Title = "Your Cart";
+}
+
+<h2>Your Cart</h2>
+
+@if (Model?.CartItems?.Any() == true)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Plan</th>
+                <th>Price</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td>@item.MembershipPlan.Name</td>
+                    <td>$@item.MembershipPlan.Price</td>
+                    <td>@item.MembershipPlan.DurationInDays days</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <form asp-action="Checkout" method="post">
+        <button class="btn btn-success">Checkout and Upgrade</button>
+    </form>
+}
+else
+{
+    <p>Your cart is empty.</p>
+}
