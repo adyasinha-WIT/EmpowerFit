@@ -27,9 +27,17 @@
         </tbody>
     </table>
 
-    <form asp-action="Checkout" method="post">
-        <button class="btn btn-success">Checkout and Upgrade</button>
+    <form asp-area="Basic"
+          asp-controller="Payment"
+          asp-action="CreateCheckoutSession"
+          method="post">
+        <input type="hidden" name="planId"
+               value="@Model.CartItems.First().MembershipPlan.Id" />
+        <button type="submit" class="btn btn-success">
+            Checkout and Upgrade
+        </button>
     </form>
+
 }
 else
 {

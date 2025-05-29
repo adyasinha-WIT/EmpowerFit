@@ -2,17 +2,26 @@ using Microsoft.EntityFrameworkCore;
 using ExFit.DataAcces.Data;
 using ExFit.DataAcces.Repository.IRepository;
 using ExFit.DataAcces.Repository;
-
+using Stripe;
 using EmpowerFit.Areas.Identity;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Builder;
+using ExFit.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+
+var stripeConfig = builder.Configuration
+    .GetSection("Stripe")
+    .Get<StripeSettings>();
+StripeConfiguration.ApiKey = stripeConfig.SecretKey;
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -29,6 +38,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     // Default Identity path
 });
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -38,7 +48,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddRazorPages();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 

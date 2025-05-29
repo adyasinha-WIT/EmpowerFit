@@ -58,6 +58,7 @@ namespace EmpowerFit.Areas.Basic.Controllers
             return View(cart);
         }
 
+
         [HttpPost]
         public IActionResult Checkout()
         {

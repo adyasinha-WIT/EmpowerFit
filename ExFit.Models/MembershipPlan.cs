@@ -9,9 +9,9 @@ namespace ExFit.Models
     public class MembershipPlan
     {
         public int Id { get; set; }
-        public string Name { get; set; } // e.g. "1 Month", "3 Months"
+        public string Name { get; set; } 
         public decimal Price { get; set; }
-        public int DurationInDays { get; set; } // For logic to upgrade to premium
+        public int DurationInDays { get; set; } // logic to upgrade to premium
     }
 
 }

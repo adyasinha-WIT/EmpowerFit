@@ -4,6 +4,7 @@ using ExFit.DataAcces.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExFit.DataAcces.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250528103934_addingtables")]
+    partial class addingtables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,32 +118,6 @@ namespace ExFit.DataAcces.Migrations
                             Name = "1 Year",
                             Price = 79.99m
                         });
-                });
-
-            modelBuilder.Entity("ExFit.Models.UserMembership", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("ExpiryDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PlanId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserMemberships");
                 });
 
             modelBuilder.Entity("ExFit.Models.Workout", b =>
