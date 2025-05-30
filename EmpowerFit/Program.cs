@@ -4,7 +4,6 @@ using ExFit.DataAcces.Repository.IRepository;
 using ExFit.DataAcces.Repository;
 using Stripe;
 using EmpowerFit.Areas.Identity;
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Builder;
 using ExFit.Utilities;
@@ -29,7 +28,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => {
     options.SignIn.RequireConfirmedAccount = false;
 })
-.AddRoles<IdentityRole>()  // Crucial for role management
+.AddRoles<IdentityRole>() 
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.ConfigureApplicationCookie(options =>

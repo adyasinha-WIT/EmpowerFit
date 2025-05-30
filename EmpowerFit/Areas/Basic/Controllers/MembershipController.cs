@@ -58,6 +58,20 @@ namespace EmpowerFit.Areas.Basic.Controllers
             return View(cart);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult RemoveFromCart(int cartItemId)
+        {
+            var item = _unitOfWork.CartItem.Get(ci => ci.Id == cartItemId);
+            if (item != null)
+            {
+                _unitOfWork.CartItem.Remove(item);
+                _unitOfWork.Save();
+            }
+            return RedirectToAction(nameof(Cart));
+        }
+
+
 
         [HttpPost]
         public IActionResult Checkout()
@@ -80,7 +94,6 @@ namespace EmpowerFit.Areas.Basic.Controllers
                     _userManager.AddToRoleAsync(user, "Premium").Wait();
                 }
 
-                // Optionally store membership duration in DB (custom table)
 
                 _unitOfWork.Cart.Remove(cart); // Empty cart
                 _unitOfWork.Save();
