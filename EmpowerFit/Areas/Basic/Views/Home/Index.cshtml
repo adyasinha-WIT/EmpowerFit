@@ -17,7 +17,7 @@ else
 }
 
 <!-- Hero Banner Section -->
-<div class="position-relative">
+<div class="position-relative mb-5">
     <img src="https://plus.unsplash.com/premium_photo-1664109999741-9c559509df58?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
          alt="EmpowerFit Banner"
          class="img-fluid w-100"
@@ -26,10 +26,96 @@ else
         <h1 class="display-4 fw-bold">It’s all coming together</h1>
         <p class="lead">Empowering women with safety tools and fitness tracking in one place.</p>
         <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-warning btn-lg me-2">Sign Up Free</a>
+        <a asp-area="Basic" asp-controller="Membership" asp-action="Index" class="btn btn-outline-light btn-lg">View Plans</a>
     </div>
 </div>
 
+<!-- ====== Features Section ====== -->
+<div class="container mb-5">
+    <h2 class="text-center mb-4">Features We Offer</h2>
 
+    <div class="row">
+        <!-- Safety Tools Card -->
+        <div class="col-md-3 mb-4">
+            <div class="glass-card p-4 h-100 d-flex flex-column">
+                <div class="mb-3 text-center">
+                    <i class="bi-shield-lock-fill" style="font-size: 2rem; color: #b14fc3;"></i>
+                </div>
+                <h5 class="text-center mb-2">Safety Tools</h5>
+                <p class="text-center flex-grow-1">
+                    Emergency contacts, live location sharing, and one-tap SOS alerts—stay safe wherever you go.
+                </p>
+                <div class="text-center mt-3">
+                    <a asp-area="Basic" asp-controller="Safety" asp-action="Index" class="menu-link px-3 py-2">
+                        Explore Features
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Track Your Workouts Card -->
+        <div class="col-md-3 mb-4">
+            <div class="glass-card p-4 h-100 d-flex flex-column">
+                <div class="mb-3 text-center">
+                    <i class="bi-activity" style="font-size: 2rem; color: #3a8dde;"></i>
+                </div>
+                <h5 class="text-center mb-2">Track Your Workouts</h5>
+                <p class="text-center flex-grow-1">
+                    Log routines, add images or videos, and watch your progress improve over time.
+                </p>
+                <div class="text-center mt-3">
+                    <a asp-area="Basic" asp-controller="Workout" asp-action="Index" class="menu-link px-3 py-2">
+                        Workouts
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Support Card -->
+        <div class="col-md-3 mb-4">
+            <div class="glass-card p-4 h-100 d-flex flex-column">
+                <div class="mb-3 text-center">
+                    <i class="bi-people-fill" style="font-size: 2rem; color: #6a1b9a;"></i>
+                </div>
+                <h5 class="text-center mb-2">Community Support</h5>
+                <p class="text-center flex-grow-1">
+                    Connect with nearby members, share tips, and stay motivated together.
+                </p>
+                <div class="text-center mt-3">
+                    <a asp-area="Basic" asp-controller="Community" asp-action="Index" class="menu-link px-3 py-2">
+                        Join Community
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Membership Card -->
+        <div class="col-md-3 mb-4">
+            <div class="glass-card p-4 h-100 d-flex flex-column">
+                <div class="mb-3 text-center">
+                    <i class="bi-diamond-fill" style="font-size: 2rem; color: #ff4081;"></i>
+                </div>
+                <h5 class="text-center mb-2">Premium Membership</h5>
+                <p class="text-center flex-grow-1">
+                    Unlock advanced safety modes, exclusive content—all for one low price.
+                </p>
+                <div class="text-center mt-3">
+                    <a asp-area="Basic" asp-controller="Membership" asp-action="Index" class="menu-link px-3 py-2">
+                        Upgrade
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== CTA Banner ====== -->
+<div class="bg-gradient-custom text-white text-center py-5">
+    <h2 class="mb-3">Ready to take the next step?</h2>
+    <p class="lead mb-4">Join EmpowerFit Premium to unlock all tools, personalized plans, and community perks!</p>
+    <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-lg btn-light me-2">Sign Up Now</a>
+    <a asp-area="Basic" asp-controller="Membership" asp-action="Index" class="btn btn-lg btn-outline-light">View Plans</a>
+</div>
 
 <style>
     /* Glassy card effect for the section box */
@@ -50,13 +136,24 @@ else
         transition: background 0.2s, color 0.2s, transform 0.1s, box-shadow 0.1s;
         border-radius: 0.5rem;
         margin-bottom: 0.3rem;
+        text-decoration: none;
     }
 
-        .menu-link:hover, .menu-link:focus {
+        .menu-link:hover,
+        .menu-link:focus {
             color: #fff !important;
             background: linear-gradient(90deg, #b14fc3 40%, #3a8dde 100%);
             transform: translateY(-2px) scale(1.03);
             box-shadow: 0 0.5rem 1rem rgba(177, 79, 195, 0.12);
             text-decoration: none;
+        }
+
+    /* Custom background gradient for the CTA banner */
+    .bg-gradient-custom {
+        background: linear-gradient(135deg, #3a8dde 0%, #b14fc3 100%);
+    }
+
+        .bg-gradient-custom .btn {
+            min-width: 180px;
         }
 </style>
