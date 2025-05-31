@@ -15,17 +15,15 @@
                 var long = position.coords.longitude;
                 var accuracy = position.coords.accuracy;
 
-                // If marker already exists, just update its position
+               
                 if (marker) {
                     marker.setLatLng([lat, long]);
                 } else {
                     marker = L.marker([lat, long]).addTo(map);
                 }
 
-                // Center map on current location
+               
                 map.setView([lat, long], 16);
-
-                // Optionally add/update accuracy circle or other features here
 
             },
             function (error) {
