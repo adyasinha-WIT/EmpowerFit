@@ -37,6 +37,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
     <PackageReference Include="Stripe.net" Version="48.1.0" />
+    <PackageReference Include="twilio" Version="7.11.1" />
     <PackageReference Include="Vonage" Version="7.17.2" />
   </ItemGroup>
 

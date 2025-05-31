@@ -6,7 +6,7 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    var marker;
+    var marker, currentLat, currentLong;
 
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(
@@ -14,15 +14,17 @@
                 var lat = position.coords.latitude;
                 var long = position.coords.longitude;
                 var accuracy = position.coords.accuracy;
+                currentLat = lat;
+                currentLong = long;
 
-               
+
                 if (marker) {
                     marker.setLatLng([lat, long]);
                 } else {
                     marker = L.marker([lat, long]).addTo(map);
                 }
 
-               
+
                 map.setView([lat, long], 16);
 
             },
@@ -39,4 +41,30 @@
     } else {
         alert("Geolocation is not supported by this browser.");
     }
-});
+
+    document.getElementById('sendLocation').addEventListener('click', function () {
+        if (currentLat !== undefined && currentLong !== undefined) {
+            const url = '/Premium/Tracking/SendLocation';
+            const data = {
+                latitude: currentLat,
+                longitude: currentLong
+            };
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+                .then(() => {
+                    alert('Location sent successfully!, \nLatitude: ' + currentLat + '\nLongitude: ' + currentLong);
+                })
+                .catch(() => {
+                    alert('Failed to send location.');
+                });
+
+
+        } else {
+            alert('Location not ready yet, please wait.');
+        }
+    });
+
+}); 
