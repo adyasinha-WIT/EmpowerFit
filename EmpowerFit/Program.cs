@@ -19,6 +19,7 @@ builder.Services.AddControllersWithViews();
 
 
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+builder.Services.builder.Services.Configure<TwilioSettings>(builder.Configuration.GetSection("Twilio"));
 
 var stripeConfig = builder.Configuration
     .GetSection("Stripe")
