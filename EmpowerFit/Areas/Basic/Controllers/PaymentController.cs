@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Stripe;
 using Stripe.Checkout;
 using Microsoft.Extensions.Options;
@@ -12,12 +13,15 @@ public class PaymentController : Controller
 {
     private readonly StripeSettings _stripe;
     private readonly IUnitOfWork _uw;
+    private readonly UserManager<IdentityUser> _userManager;
 
     public PaymentController(IOptions<StripeSettings> stripeOpts,
-                             IUnitOfWork uw)
+                             IUnitOfWork uw,
+                             UserManager<IdentityUser> userManager)
     {
         _stripe = stripeOpts.Value;
         _uw = uw;
+        _userManager = userManager;
     }
 
     [HttpPost]
@@ -105,6 +109,12 @@ public class PaymentController : Controller
         };
         _uw.UserMembership.Add(membership);
         _uw.Save();
+
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user != null && !await _userManager.IsInRoleAsync(user, "Premium"))
+        {
+            await _userManager.AddToRoleAsync(user, "Premium");
+        }
 
         return View();
     }
