@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExFit.Utilities
 {
-    class TwilioSettings
+    public class TwilioSettings
     {
         public string AccountSID { get; set; }
         public string AuthToken { get; set; }
