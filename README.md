@@ -8,8 +8,6 @@ Features
 
     Progress Tracking: Log workouts, track progress, and visualize improvements.
 
-    Nutrition Management: Track meals, calories, and nutritional intake (planned/optional).
-
     Admin Dashboard: Manage users, workouts, and system settings.
 
     Data Analytics: Visualize fitness trends and key metrics (planned/optional).
