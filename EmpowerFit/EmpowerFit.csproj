@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -44,6 +44,12 @@
     <ProjectReference Include="..\ExFit.DataAcces\ExFit.DataAcces.csproj" />
     <ProjectReference Include="..\ExFit.Models\ExFit.Models.csproj" />
     <ProjectReference Include="..\ExFit.Utilities\ExFit.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\css\site.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

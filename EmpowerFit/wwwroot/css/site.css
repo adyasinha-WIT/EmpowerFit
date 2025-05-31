@@ -100,3 +100,9 @@ body {
         background-color: #d63384;
         border-color: #d63384;
     }
+
+/*//LEAFLETS MAP*/
+#map {
+    height: 400px;
+    width: 100%;
+}
