@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExFit.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,8 @@ namespace ExFit.DataAcces.Repository.IRepository
 
             IWorkoutRepository Workout { get; }
             IMembershipPlanRepository MembershipPlan { get; }
-            ICartRepository Cart { get; }
+        IRepository<UserMembership> UserMembership { get; }
+        ICartRepository Cart { get; }
             ICartItemRepository CartItem { get; }
             void Save();
         

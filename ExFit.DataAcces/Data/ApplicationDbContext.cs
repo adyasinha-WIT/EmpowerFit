@@ -15,6 +15,7 @@ namespace ExFit.DataAcces.Data
         public DbSet<MembershipPlan> MembershipPlans { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<UserMembership> UserMemberships { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
