@@ -57,10 +57,10 @@ body {
 }
 
 .role-select {
-    background-color: #e5d0ff !important; /* Light purple */
-    color: #4a186a !important; /* Dark purple text */
-    border: 1px solid #b39ddb;
-    font-weight: 500;
+    appearance: none;
+    background-position: right 0.75rem center;
+    background-size: 10px 6px;
+    padding-right: 2rem; /* make room for the custom arrow */
 }
 
     .role-select:focus {
