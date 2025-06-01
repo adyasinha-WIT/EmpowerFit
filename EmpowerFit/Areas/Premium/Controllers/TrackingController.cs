@@ -51,7 +51,7 @@ namespace EmpowerFit.Areas.Premium.Controllers
                 TwilioClient.Init(_twilioSettings.AccountSid, _twilioSettings.AuthToken);
 
                 var message = await MessageResource.CreateAsync(
-                    body: "SOS Alert from user:"+ userName+". Thier location is:\nLatitude:" + lat + "\nLongitude:" + lon,
+                    body: "SOS Alert from user:"+ userName+". User location is:\nLatitude:" + lat + "\nLongitude:" + lon,
                     from: new Twilio.Types.PhoneNumber(_twilioSettings.FromPhone),
                     to: new Twilio.Types.PhoneNumber("+64277664885")
                     );
