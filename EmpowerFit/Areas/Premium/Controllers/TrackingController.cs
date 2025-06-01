@@ -54,6 +54,7 @@ namespace EmpowerFit.Areas.Premium.Controllers
 
                 Console.WriteLine(message.Body);
 
+
                 return Ok("Location Recieved and SMS sent");
             }
             catch

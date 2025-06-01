@@ -54,14 +54,16 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             })
-                .then(() => {
-                    alert('Location sent successfully!, \nLatitude: ' + currentLat + '\nLongitude: ' + currentLong);
+                .then(response => {
+                    if (response.ok) {
+                        alert("Alert message sent out");
+                    } else {
+                        alert("Error sending message");
+                    }
                 })
                 .catch(() => {
-                    alert('Failed to send location.');
+                    alert("Error sending message");
                 });
-
-
         } else {
             alert('Location not ready yet, please wait.');
         }
