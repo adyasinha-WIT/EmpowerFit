@@ -53,7 +53,7 @@ namespace EmpowerFit.Areas.Premium.Controllers
                 var message = await MessageResource.CreateAsync(
                     body: "SOS Alert from user:"+ userName+". User location is:\nLatitude:" + lat + "\nLongitude:" + lon,
                     from: new Twilio.Types.PhoneNumber(_twilioSettings.FromPhone),
-                    to: new Twilio.Types.PhoneNumber("+64277664885")
+                    to: new Twilio.Types.PhoneNumber(_twilioSettings.EmergencyPhone)
                     );
 
                 Console.WriteLine(message.Body);

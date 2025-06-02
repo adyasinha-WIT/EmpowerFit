@@ -11,5 +11,6 @@ namespace ExFit.Utilities
         public string AccountSid { get; set; }
         public string AuthToken { get; set; }
         public string FromPhone { get; set; }
+        public string EmergencyPhone { get; set; }  // to hide the phone number
     }
 }
