@@ -147,5 +147,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{area=Basic}/{controller=Home}/{action=Index}/{id?}");
 
-app.Run();
 
