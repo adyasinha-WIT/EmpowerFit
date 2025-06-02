@@ -7,6 +7,7 @@ using EmpowerFit.Areas.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Builder;
 using ExFit.Utilities;
+using AspNetCoreRateLimit;
 
 
 
@@ -16,10 +17,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//RateLimit
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+builder.Services.AddInMemoryRateLimiting();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 
 
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 builder.Services.Configure<TwilioSettings>(builder.Configuration.GetSection("Twilio"));
+builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+
 
 var stripeConfig = builder.Configuration
     .GetSection("Stripe")
@@ -64,9 +73,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseIpRateLimiting();
 app.UseAuthentication();
 app.UseAuthorization();
 
